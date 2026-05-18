@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GTC-8C钢轨探伤仪探头布置考核</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>GTC-8C钢轨探伤仪探头布置考核</h1>
+        <p class="subtitle">将完整探头组件放入正确位置，侧视图与俯视图同步联动。</p>
+      </div>
+      <div class="status-group">
+        <div class="status-pill">
+          <span class="label">模式</span>
+          <span id="modeText">练习模式</span>
+        </div>
+        <div class="status-pill">
+          <span class="label">用时</span>
+          <span id="timerText">00:00</span>
+        </div>
+        <div class="status-pill score-pill">
+          <span class="label">得分</span>
+          <span id="scoreText">--</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="control-bar card">
+      <div class="left-actions">
+        <button id="btnPractice" class="btn active">练习模式</button>
+        <button id="btnExam" class="btn">考核模式</button>
+      </div>
+      <div class="right-actions">
+        <button id="btnCheck" class="btn primary">检查答案</button>
+        <button id="btnReset" class="btn">重置</button>
+        <button id="btnAnswer" class="btn">查看答案</button>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="diagram-column">
+        <section class="panel card">
+          <div class="panel-head">
+            <h2>钢轨侧视图</h2>
+            <p>可拖拽到底座，也可先点击下方探头组件，再点击槽位放置。</p>
+          </div>
+          <div class="direction-tip">行进方向 <span class="arrow-line"></span></div>
+          <div id="sideDiagram" class="diagram side-diagram"></div>
+        </section>
+
+        <section class="panel card">
+          <div class="panel-head">
+            <h2>轨头俯视图</h2>
+            <p>下图与上图一一对应，放置结果自动同步。</p>
+          </div>
+          <div id="topDiagram" class="diagram top-diagram"></div>
+        </section>
+      </div>
+
+      <aside class="sidebar card">
+        <div class="panel-head small-gap">
+          <h2>探头组件库</h2>
+          <p>探头的编号、角度、方向和组合关系作为一个整体进行考核。</p>
+        </div>
+
+        <div id="library" class="probe-library"></div>
+
+        <div class="tip-box">
+          <h3>操作说明</h3>
+          <ol>
+            <li>从下方探头组件库中选择一个探头组件。</li>
+            <li>拖到槽位中，或点击探头后再点击任意槽位。</li>
+            <li>一个探头只能放一次，放到新位置会自动挪动。</li>
+            <li>点击已放置的槽位，可将该探头移回组件库。</li>
+          </ol>
+        </div>
+
+        <div class="feedback-box">
+          <h3>结果反馈</h3>
+          <div id="feedbackContent" class="feedback-content">当前未提交。请先完成布置后点击“检查答案”。</div>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
