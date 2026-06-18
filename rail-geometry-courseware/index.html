@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>高速铁路桥上无砟轨道几何形位调整课件</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+                    <h1>高速铁路桥上无砟轨道几何形位调整课件</h1>
+        </div>
+        <div class="status-strip" aria-label="任务状态">
+          <span id="status-score">得分 0</span>
+          <span id="status-stage">领取任务</span>
+        </div>
+      </header>
+
+      <nav class="stepper" id="stepper" aria-label="学习流程"></nav>
+
+      <main class="workspace">
+        <section class="scene-panel" aria-label="三维模型接入区">
+          <div class="scene-header">
+            <div>
+              <p class="eyebrow">模型接入区</p>
+              <h2 id="scene-title">桥上无砟轨道区段</h2>
+            </div>
+            <span id="scene-badge">占位</span>
+          </div>
+
+          <div class="model-slot" id="modelSlot">
+            <canvas class="model-canvas" id="modelCanvas" aria-label="三维模型显示区"></canvas>
+            <div class="model-status" id="modelStatus">正在加载三维模型...</div>
+            <div class="bridge-deck model-placeholder">
+              <div class="track-board"></div>
+              <div class="rail rail-left"></div>
+              <div class="rail rail-right"></div>
+              <div class="fastener-row fastener-row-left"></div>
+              <div class="fastener-row fastener-row-right"></div>
+            </div>
+            <div class="measure-layer">
+              <div class="track-map-panel" aria-label="二维测点示意">
+                <div class="track-map-title">测点示意</div>
+                <div class="track-map-diagram">
+                  <div class="track-map-rail track-map-rail-top"></div>
+                  <div class="track-map-rail track-map-rail-bottom"></div>
+                  <div class="track-map-sleeper sleeper-1"></div>
+                  <div class="track-map-sleeper sleeper-2"></div>
+                  <div class="track-map-sleeper sleeper-3"></div>
+                  <div class="track-map-sleeper sleeper-4"></div>
+                  <div class="track-map-sleeper sleeper-5"></div>
+                  <button class="measure-point" data-point="C01">C01</button>
+                  <button class="measure-point" data-point="C02">C02</button>
+                  <button class="measure-point" data-point="C03">C03</button>
+                  <button class="measure-point" data-point="C04">C04</button>
+                  <button class="measure-point" data-point="C05">C05</button>
+                </div>
+              </div>
+            </div>
+            <div class="component-layer" id="componentLayer"></div>
+          </div>
+
+          <div class="scene-note" id="sceneNote">
+            后续可在此接入无砟轨道板与 WJ-8 扣件三维模型。
+          </div>
+        </section>
+
+        <section class="task-panel">
+          <div id="stepContent"></div>
+        </section>
+      </main>
+
+      <footer class="actionbar">
+        <button class="ghost" id="prevBtn" type="button">上一步</button>
+        <div class="actionbar-mid" id="actionHint">接收任务后进入结构认知。</div>
+        <button class="primary" id="nextBtn" type="button">进入下一步</button>
+      </footer>
+    </div>
+
+    <script src="./app.js"></script>
+    <script src="./model-viewer.js"></script>
+  </body>
+</html>
