@@ -23,6 +23,8 @@ import {
 } from "lucide-react";
 import "./App.css";
 
+const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+
 const SOP = [
   {
     id: 1,
@@ -241,21 +243,21 @@ const INITIAL_EVENTS = [
     detail: "P02 已离开 F1 作业围栏。", level: "黄级", status: "待处置",
     node: "动态围栏", type: "围栏越界", person: "P02 · 许静逸", source: "视觉–UWB 联判",
     action: "语音提醒 P02 返回作业区，并由安全监护确认。", duration: "14秒",
-    snapshot: "/evidence/boundary-alert.jpg",
+    snapshot: assetUrl("/evidence/boundary-alert.jpg"),
   },
   {
     id: "alert-machine", time: "10:23:04", title: "P03 进入机具围栏",
     detail: "P03 与改道机具 M-01 的安全间距不足。", level: "黄级", status: "已处置",
     node: "动态围栏", type: "近机风险", person: "P03 · 杜哲生", source: "机具围栏联判",
     action: "P03 已退出机具影响范围，安全监护确认。", note: "P03 已退出机具区，安全监护确认",
-    duration: "18秒", snapshot: "/evidence/machine-alert.jpg",
+    duration: "18秒", snapshot: assetUrl("/evidence/machine-alert.jpg"),
   },
   {
     id: "alert-train", time: "10:24:31", title: "临线列车红级预警",
     detail: "D3102 ETA 01:00，已启动人员、机具现场确认。", level: "红级", status: "已处置",
     node: "临线预警", type: "临线来车", person: "全体作业人员", source: "双点时差钢轨振动感知",
     action: "强提醒已确认，人员与机具状态复核完成。", note: "强提醒确认，人员与机具状态复核完成",
-    duration: "32秒", snapshot: "/evidence/train-alert.jpg",
+    duration: "32秒", snapshot: assetUrl("/evidence/train-alert.jpg"),
   },
 ];
 
@@ -299,7 +301,7 @@ function App() {
 
   const captureEvidence = () => {
     const video = videoRef.current;
-    if (!video?.videoWidth) return "/railway-worksite.png";
+    if (!video?.videoWidth) return assetUrl("/railway-worksite.png");
     const canvas = document.createElement("canvas");
     canvas.width = 480;
     canvas.height = 270;
@@ -477,7 +479,7 @@ function App() {
             <p className="modal-detail">{activeEvent.detail}</p>
             <div className="modal-evidence">
               <img
-                src={activeEvent.snapshot || "/railway-worksite.png"}
+                src={activeEvent.snapshot || assetUrl("/railway-worksite.png")}
                 alt="告警视频截帧"
               />
               <div>
@@ -730,7 +732,7 @@ function Dashboard({
   useEffect(() => {
     let cancelled = false;
     const loadResult = () => {
-      fetch("/analysis/latest.json", { cache: "no-store" })
+      fetch(assetUrl("/analysis/latest.json"), { cache: "no-store" })
         .then((response) => (response.ok ? response.json() : null))
         .then((data) => {
           if (!cancelled) setAiResult(data);
@@ -815,7 +817,7 @@ function Dashboard({
           <div className="worksite fastener-video">
             <video
               ref={videoRef}
-              src="/fastener-gauge-adjustment.mp4"
+              src={assetUrl("/fastener-gauge-adjustment.mp4")}
               autoPlay
               muted
               loop
@@ -1130,7 +1132,7 @@ function Alerts({ events, onResolve }) {
         <section className="panel alert-record-list"><PanelTitle icon={<BellRing size={18} />} title="告警队列" extra={<span>{pendingCount ? `${pendingCount} 项待处理` : "全部已闭环"}</span>} />
           {records.map((event) => <button className={`alert-record ${selected?.id === event.id ? "selected" : ""} ${event.status === "已处置" ? "resolved" : ""}`} key={event.id} onClick={() => setSelectedId(event.id)}><span className={`alert-level ${event.level}`}>{event.level}</span><div><b>{event.title}</b><small>{event.time} · {event.person || "现场人员"}</small><em>{event.detail}</em></div><i>{event.status}</i></button>)}
         </section>
-        {selected && <section className="panel alert-detail-card"><PanelTitle icon={<Eye size={18} />} title="告警处置单" extra={<span className={selected.status === "已处置" ? "success-text" : "danger-text"}>{selected.status}</span>} /><div className="alert-detail-image"><img src={selected.snapshot || "/railway-worksite.png"} alt={`${selected.title}证据截图`} /><span>告警证据 · {selected.time}</span></div><div className="alert-detail-body"><div className="alert-detail-title"><span className={`alert-level ${selected.level}`}>{selected.level}</span><div><h3>{selected.title}</h3><p>{selected.detail}</p></div></div><dl><div><dt>关联对象</dt><dd>{selected.person || "视频作业人员"}</dd></div><div><dt>感知来源</dt><dd>{selected.source || "视频规则引擎"}</dd></div><div><dt>处置措施</dt><dd>{selected.note || selected.action || "待现场确认"}</dd></div></dl><div className="alert-flow"><span>发现</span><i /><span>语音提醒</span><i /><span>现场确认</span><i /><b>{selected.status === "已处置" ? "已闭环" : "待处置"}</b></div>{selected.status !== "已处置" && <button className="primary alert-resolve" onClick={() => onResolve(selected, `安全监护确认：${selected.action}`)}><Check size={18} />确认处置并留痕</button>}</div></section>}
+        {selected && <section className="panel alert-detail-card"><PanelTitle icon={<Eye size={18} />} title="告警处置单" extra={<span className={selected.status === "已处置" ? "success-text" : "danger-text"}>{selected.status}</span>} /><div className="alert-detail-image"><img src={selected.snapshot || assetUrl("/railway-worksite.png")} alt={`${selected.title}证据截图`} /><span>告警证据 · {selected.time}</span></div><div className="alert-detail-body"><div className="alert-detail-title"><span className={`alert-level ${selected.level}`}>{selected.level}</span><div><h3>{selected.title}</h3><p>{selected.detail}</p></div></div><dl><div><dt>关联对象</dt><dd>{selected.person || "视频作业人员"}</dd></div><div><dt>感知来源</dt><dd>{selected.source || "视频规则引擎"}</dd></div><div><dt>处置措施</dt><dd>{selected.note || selected.action || "待现场确认"}</dd></div></dl><div className="alert-flow"><span>发现</span><i /><span>语音提醒</span><i /><span>现场确认</span><i /><b>{selected.status === "已处置" ? "已闭环" : "待处置"}</b></div>{selected.status !== "已处置" && <button className="primary alert-resolve" onClick={() => onResolve(selected, `安全监护确认：${selected.action}`)}><Check size={18} />确认处置并留痕</button>}</div></section>}
       </div>
     </section>
   );
@@ -1175,7 +1177,7 @@ function Review({ events, sopRate }) {
     </div>
     <section className="panel review-evidence-gallery">
       <PanelTitle icon={<Eye size={18} />} title="关键证据截图" extra={<span>视频、告警、处置记录关联存档</span>} />
-      <div className="evidence-gallery-grid">{reviewEvents.slice(0, 3).map((event) => <article key={`${event.id}-image`}><div className="evidence-frame"><img src={event.snapshot || "/railway-worksite.png"} alt={`${event.title}证据截图`} /><span className={event.level === "红级" || event.level === "高" ? "red" : "yellow"}>{event.level}</span></div><div><b>{event.title}</b><small>{event.time} · {event.kind}</small></div></article>)}</div>
+      <div className="evidence-gallery-grid">{reviewEvents.slice(0, 3).map((event) => <article key={`${event.id}-image`}><div className="evidence-frame"><img src={event.snapshot || assetUrl("/railway-worksite.png")} alt={`${event.title}证据截图`} /><span className={event.level === "红级" || event.level === "高" ? "red" : "yellow"}>{event.level}</span></div><div><b>{event.title}</b><small>{event.time} · {event.kind}</small></div></article>)}</div>
     </section>
   </section>;
 }
