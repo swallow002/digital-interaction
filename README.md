@@ -6,6 +6,7 @@
 
 - [GTC-8C probe](./GTC-8C-probe/)：GTC-8C 探头布局数字交互示例
 - [高速铁路桥上无砟轨道几何形位调整课件](./rail-geometry-courseware/)：桥上无砟轨道几何形位调整教学课件
+- [轨道智护先锋](./railway-guardian-pioneer-app/)：铁路营业线施工安全监管与 SOP 管控系统
 
 ## 在线访问
 
@@ -13,3 +14,4 @@
 
 - `https://swallow002.github.io/digital-interaction/GTC-8C-probe/`
 - `https://swallow002.github.io/digital-interaction/rail-geometry-courseware/`
+- `https://swallow002.github.io/digital-interaction/railway-guardian-pioneer-app/`
