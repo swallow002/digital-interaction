@@ -31,7 +31,7 @@ jobs:
           cache-dependency-path: railway-guardian-pioneer-demo/package-lock.json
       - name: Install
         working-directory: railway-guardian-pioneer-demo
-        run: npm ci
+        run: npm install
       - name: Build
         working-directory: railway-guardian-pioneer-demo
         run: npm run build
