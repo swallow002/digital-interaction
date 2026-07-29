@@ -1,0 +1,43 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local AI runtime, models and capture cache
+.venv-ai/
+tmp-source-analysis/
+tmp-video-analysis/
+ai/models/
+ai/runs/
+ai/__pycache__/
+ai/dataset/**/images/
+ai/dataset/**/grid/
+ai/dataset/**/contact-sheet.jpg
+ai/dataset/**/*.cache
+yolo11n.pt
+扣件改道标准化作业.mp4
+qa-*.png
+
+# Keep deliverable MP4 demos, omit intermediate capture frames
+output/demo-video/desktop/
+output/demo-video/mobile/

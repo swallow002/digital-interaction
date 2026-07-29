@@ -1,0 +1,31 @@
+{
+  "source": "fastener-gauge-adjustment.mp4",
+  "label_source": "expert_video_review",
+  "warning": "These are human-reviewed procedure labels for the supplied video. They are not output from the current generic detector.",
+  "segments": [
+    {
+      "start_sec": 0,
+      "end_sec": 14,
+      "sop_step": 4,
+      "procedure": "loosen_fastener",
+      "display_name": "松扣件 / 拆卸组件",
+      "evidence": ["elastic_clip", "gauge_plate", "screw_spike", "components_removed"]
+    },
+    {
+      "start_sec": 14,
+      "end_sec": 20,
+      "sop_step": 5,
+      "procedure": "clean_rail_seat",
+      "display_name": "清除承轨台及螺杆脏污",
+      "evidence": ["cleaning_cloth_or_brush", "rail_seat", "screw_spike"]
+    },
+    {
+      "start_sec": 20,
+      "end_sec": 35.56,
+      "sop_step": 5,
+      "procedure": "adjust_fastener",
+      "display_name": "调整扣板 / 弹条组件",
+      "evidence": ["elastic_clip", "gauge_plate", "screw_spike", "manual_adjustment"]
+    }
+  ]
+}

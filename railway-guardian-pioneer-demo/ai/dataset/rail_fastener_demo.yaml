@@ -1,0 +1,14 @@
+path: ./ai/dataset/rail_fastener_demo
+train: images/train
+val: images/val
+names:
+  0: person
+  1: pry_bar
+  2: socket_wrench
+  3: torque_wrench
+  4: gauge_ruler
+  5: cleaning_tool
+  6: elastic_clip
+  7: gauge_plate
+  8: screw_spike
+  9: rail_seat
