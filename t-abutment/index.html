@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>T形桥台认知与练习</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf2f6;color:#213c50;font-family:"Microsoft YaHei",sans-serif}header{padding:22px 30px;background:#fff;border-bottom:1px solid #dce4eb;display:flex;justify-content:space-between;align-items:center}h1{margin:0;font-size:26px}header p{margin:7px 0 0;color:#728291;font-size:14px}main{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:20px;padding:20px;height:calc(100vh - 108px);min-height:560px}.scene{position:relative;border:1px solid #dce4eb;background:linear-gradient(#fafcfd,#e5edf3);border-radius:12px;overflow:hidden}canvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}.hint{position:absolute;bottom:16px;left:20px;font-size:13px;color:#6e8293;pointer-events:none}.badge{position:absolute;top:18px;left:20px;font-size:13px;color:#627c8e}aside{background:white;border-radius:12px;padding:20px;overflow:auto}h2{font-size:21px;margin:0 0 10px}#description{min-height:90px;line-height:1.8;font-size:14px;color:#526c7e}button{font:inherit;padding:10px 12px;border:1px solid #d3e0ea;border-radius:7px;background:white;color:#285371;cursor:pointer}button:hover{background:#edf5fa}button[aria-pressed=true]{background:#e8832f;color:white;border-color:#e8832f}.parts{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:18px 0}.parts button{font-size:14px}.controls{display:grid;gap:12px;border-top:1px solid #e0e7ed;padding-top:17px}label{font-size:14px;display:block}input[type=range]{width:100%;accent-color:#2679ac}.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}.note{font-size:12px;line-height:1.7;color:#788b99;margin-top:16px}button:focus-visible{outline:3px solid #ffb36c}a{color:#2875a7}@media(max-width:850px){main{height:auto;grid-template-columns:1fr}.scene{height:65vh;min-height:400px}header{padding:18px}h1{font-size:22px}}
+.score-card{margin:0 0 20px;padding:18px 14px;background:#edf6fc;border:2px solid #2679ac;border-radius:10px}.score-caption{font-size:14px;color:#526c7e}.score-number{font-size:64px;font-weight:800;line-height:1.1;color:#174f79;letter-spacing:-2px}.score-unit{font-size:22px;font-weight:600;margin-left:7px}.score-summary{font-size:15px;line-height:1.7;margin:10px 0 0}.score-errors{font-size:14px;line-height:1.7;border-top:1px solid #cadfea;margin-top:12px;padding-top:10px}.score-errors ul{margin:6px 0 0;padding-left:20px}.score-card[hidden]{display:none}#result:empty{display:none}
+/* 与简支梁认知页面保持一致的教学界面 */
+.parts button[data-part]{position:relative;text-align:left;padding-left:27px}.parts button[data-part]::before{content:"";position:absolute;left:10px;top:50%;transform:translateY(-50%);width:9px;height:9px;border-radius:2px;background:var(--part-color);border:1px solid #cce2e5}.parts button[data-part][aria-pressed=true]{box-shadow:inset 3px 0 var(--part-color);border-color:var(--part-color)}
+body{background:#061321;color:#c8edf6;font-family:"Microsoft YaHei",system-ui,sans-serif}
+header{max-width:1500px;margin:auto;padding:30px clamp(18px,3vw,46px) 20px;background:transparent;border:0;position:relative}
+header:after{content:"";position:absolute;bottom:0;left:clamp(18px,3vw,46px);right:clamp(18px,3vw,46px);height:1px;background:#1e3b4c}
+.eyebrow{font-size:12px;color:#4ccbd5;font-weight:700;letter-spacing:.16em}
+h1{font-size:clamp(27px,3.4vw,38px);margin:9px 0;color:#d8f5fa}header p{color:#75a8bc;margin:0;font-size:16px}
+main{max-width:1500px;margin:auto;grid-template-columns:minmax(0,1fr) 310px;gap:18px;padding:22px clamp(18px,3vw,46px) 30px;height:auto;min-height:0;align-items:start}
+.scene{height:min(70vh,700px);min-height:430px;border:1px solid #245168;border-radius:4px;background-color:#091d2c;background-image:linear-gradient(rgba(72,173,193,.095) 1px,transparent 1px),linear-gradient(90deg,rgba(72,173,193,.095) 1px,transparent 1px),radial-gradient(ellipse at center,#123344,#091d2c 75%);background-size:40px 40px,40px 40px,100% 100%}
+aside{background:#091b29;border:1px solid #214355;border-radius:4px;padding:20px;overflow:visible}.badge{color:#80bccc}.hint{color:#80bccc;background:#092131e8;border:1px solid #245168;padding:9px 12px;bottom:16px;left:16px}
+h2{color:#8eeaf0;font-size:18px}#description{color:#a6cdd6}button{background:#0a2130;color:#9dd4e1;border:1px solid #245168;border-radius:3px}button:hover{background:#123a4b}button[aria-pressed=true]{background:#123a4b;color:#80fbff;border-color:#36c6d0;box-shadow:inset 3px 0 #43dce4}button:focus-visible{outline:2px solid #65f4f1;outline-offset:2px}
+.controls{border-color:#1c3d4d}input[type=range]{accent-color:#47dce4}.note{color:#78aabb}.score-card{background:#0a2231;border:1px solid #347188;border-radius:3px}.score-caption,.score-summary{color:#a6cdd6}.score-number{color:#83f5f5}.score-errors{border-color:#245168}a{color:#83f5f5}
+@media(max-width:850px){header{padding:20px 12px}header:after{left:12px;right:12px}main{padding:20px 12px;grid-template-columns:1fr}.scene{height:49vh;min-height:330px}aside{padding:16px}h1{font-size:27px}.hint{font-size:11px;left:10px;bottom:10px}}
+</style></head><body>
+<header><div><div class="eyebrow">高速铁路桥梁 · 三维认知</div><h1>T形桥台认知与练习</h1><p>观察桥台构件，完成构件名称练习。</p></div><button id="fullscreen">全屏</button></header>
+<main><section class="scene"><div class="badge">参考图比例建模 · 教学示意</div><canvas id="view" aria-label="可拖动旋转的T形桥台三维模型"></canvas><div class="hint">拖动：旋转　滚轮 / 双指：缩放　点击：辨识构件</div></section>
+<aside><div class="pair" style="margin-bottom:20px"><button id="learnMode" aria-pressed="true">构件认知</button><button id="examMode" aria-pressed="false">知识练习</button></div><section id="examPanel" hidden><section id="scoreCard" class="score-card" hidden role="status" aria-live="polite"><div class="score-caption">本次考核成绩</div><div><span id="scoreValue" class="score-number"></span><span class="score-unit">分</span></div><p id="scoreSummary" class="score-summary"></p><div id="scoreErrors" class="score-errors"></div></section><h2>构件名称配对</h2><p style="font-size:14px;line-height:1.7">将下方名称拖到模型对应表面。可先拖动模型旋转，再放置名称。全部完成后提交。</p><div id="bank" class="parts"></div><p id="progress" aria-live="polite"></p><div class="pair"><button id="submit">提交判分</button><button id="retry">重新作答</button></div><p id="result" style="line-height:1.8" aria-live="polite"></p></section><section id="learnPanel"><h2 id="name">整体构造</h2><div id="description" aria-live="polite">前墙与后墙组成T形台身。先旋转模型观察整体，再点击构件查看名称与作用。</div><div id="parts" class="parts"></div></section><div class="controls"><label>分解程度 <span id="amount">0%</span><input id="explode" type="range" min="0" max="100" value="0"></label><label>缩放<input id="zoom" type="range" min="60" max="160" value="100"></label><div class="pair"><button id="reset">恢复视角</button><button id="clear">取消选择</button></div><div class="pair"><button id="front">正面</button><button id="top">俯视</button></div><button id="export">下载三维模型（OBJ）</button></div><p class="note">按所给轴测图建立的构造示意。尺寸、坡度及细部均为示意值，不能用于施工。OBJ 可在 Blender 等三维软件中打开。</p></aside></main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id),canvas=$('view'),ctx=canvas.getContext('2d');
+const info=[
+['基础','台身下方的阶梯式基础，承接墩台荷载并传至地基。','#8296a6',0],
+['前墙','靠桥跨一侧的横向墙体，与后墙共同组成T形台身。','#91aec2',1],
+['后墙','沿线路方向向台后延伸，与前墙形成T形平面。','#6f91a5',1],
+['托盘','前墙顶部向外扩大的承托部分，连接前墙与顶帽。','#7eb3ad',2],
+['顶帽','位于托盘上方，为垫石等构件提供支承平台。','#b6c5cd',3],
+['垫石','位于顶帽上的局部凸起，用于设置支座。图中支座与梁体未建模。','#e0c58d',4],
+['排水坡','顶帽表面的坡面，引导水流向边缘，减少平台积水。坡度为教学示意。','#8dc5bd',3],
+['道砟槽','台后上部承托道砟的槽形空间。本模型高亮槽底以指示其位置。','#b1a2be',5],
+['挡砟墙','道砟槽边缘的矮墙，用于限制道砟散落。','#c9a792',6]
+];
+let exam=false,answers={},submitted=false;
+const meshes=[];
+function prism(id,bottom,top){const n=bottom.length,v=bottom.concat(top),f=[Array.from({length:n},(_,i)=>n-1-i),Array.from({length:n},(_,i)=>n+i)];for(let i=0;i<n;i++)f.push([i,(i+1)%n,(i+1)%n+n,i+n]);meshes.push({id,v,f});}
+function box(id,x0,x1,y0,y1,z0,z1){prism(id,[[x0,y0,z0],[x1,y0,z0],[x1,y0,z1],[x0,y0,z1]],[[x0,y1,z0],[x1,y1,z0],[x1,y1,z1],[x0,y1,z1]]);}
+// 轴向：X横桥向，Y竖向，Z由桥跨指向台后。T形基础与台身分别用前部横墙、后部纵墙构成。
+box(0,-2.5,2.5,0,.38,-1.5,.6);box(0,-.85,.85,0,.38,.6,4.4);
+box(0,-2.15,2.15,.38,.7,-1.2,.4);box(0,-.65,.65,.38,.7,.4,4.15);
+box(1,-1.9,1.9,.7,3.4,-1,.1);
+prism(2,[[-.5,.7,.1],[.5,.7,.1],[.5,.7,4],[-.5,.7,4]],[[-.34,5.2,.1],[.34,5.2,.1],[.34,5.2,3.8],[-.34,5.2,3.8]]);
+prism(3,[[-1.9,3.4,-1],[1.9,3.4,-1],[1.9,3.4,.1],[-1.9,3.4,.1]],[[-2.28,3.98,-1.28],[2.28,3.98,-1.28],[2.28,3.98,.53],[-2.28,3.98,.53]]);
+box(4,-2.35,2.35,3.98,4.16,-1.35,.6);
+box(5,-1.3,-.5,4.20,4.36,-1.02,-.3);box(5,.5,1.3,4.20,4.36,-1.02,-.3);
+prism(6,[[-2.30,4.16,-1.30],[2.30,4.16,-1.30],[2.30,4.16,.55],[-2.30,4.16,.55]],[[-2.30,4.17,-1.30],[2.30,4.17,-1.30],[2.30,4.23,.55],[-2.30,4.23,.55]]);
+box(7,-.95,.95,5.2,5.38,.05,4.04);
+box(8,-1.02,-.87,5.38,5.65,.0,4.1);box(8,.87,1.02,5.38,5.65,.0,4.1);box(8,-.87,.87,5.38,5.65,3.94,4.1);
+let yaw=2.42,pitch=.48,zoom=.9,explode=0,selected=-1,W=1,H=1,drawn=[],pointers=new Map(),moved=0,last=null,pinch=0;
+const centers=info.map((_,id)=>{const v=meshes.filter(m=>m.id===id).flatMap(m=>m.v);return v.reduce((a,p)=>a.map((x,i)=>x+p[i]/v.length),[0,0,0]);});
+function transform(p,id){let [x,y,z]=p;y+=id<0?0:info[id][3]*explode*.45;z-=1.4;y-=2.8+explode*1.2;let a=x*Math.cos(yaw)-z*Math.sin(yaw),b=x*Math.sin(yaw)+z*Math.cos(yaw);return [a,y*Math.cos(pitch)-b*Math.sin(pitch),y*Math.sin(pitch)+b*Math.cos(pitch)];}
+function project(p,id){const t=transform(p,id),s=Math.min(W/9.6,H/9)*zoom;return [W*.5+t[0]*s,H*.52-t[1]*s,t[2]];}
+function shade(hex,f){let n=parseInt(hex.slice(1),16);return 'rgb('+[n>>16,(n>>8)&255,n&255].map(x=>Math.round(Math.min(255,x*f))).join(',')+')';}
+let pickBuffer=null,depthBuffer=null,rasterWidth=0,rasterHeight=0,pixelRatio=1;
+function render(){
+ const rw=Math.max(1,Math.round(W)),rh=Math.max(1,Math.round(H));
+ rasterWidth=rw;rasterHeight=rh;
+ const frame=ctx.createImageData(rw,rh);depthBuffer=new Float32Array(rw*rh);depthBuffer.fill(-Infinity);pickBuffer=new Int16Array(rw*rh);pickBuffer.fill(-1);drawn=[];
+ for(const m of meshes)for(const face of m.f){
+  const p=face.map(i=>project(m.v[i],m.id));
+  const a=m.v[face[0]],b=m.v[face[1]],c=m.v[face[2]],u=b.map((v,i)=>v-a[i]),v=c.map((v,i)=>v-a[i]);
+  const normal=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]],len=Math.hypot(...normal)||1;
+  const light=.77+.19*Math.abs(normal[1]/len)+.08*normal[0]/len;
+  const hex=info[m.id][2],n=parseInt(hex.slice(1),16),rgb=[n>>16,(n>>8)&255,n&255].map(x=>Math.min(255,Math.round(x*light*(m.id===selected?1.2:1))));
+  for(let t=1;t<p.length-1;t++){
+   const [a,b,c]=[p[0],p[t],p[t+1]],den=(b[1]-c[1])*(a[0]-c[0])+(c[0]-b[0])*(a[1]-c[1]);if(Math.abs(den)<1e-8)continue;
+   const x0=Math.max(0,Math.floor(Math.min(a[0],b[0],c[0]))),x1=Math.min(rw-1,Math.ceil(Math.max(a[0],b[0],c[0]))),y0=Math.max(0,Math.floor(Math.min(a[1],b[1],c[1]))),y1=Math.min(rh-1,Math.ceil(Math.max(a[1],b[1],c[1])));
+   for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){
+    const X=x+.5,Y=y+.5,w0=((b[1]-c[1])*(X-c[0])+(c[0]-b[0])*(Y-c[1]))/den,w1=((c[1]-a[1])*(X-c[0])+(a[0]-c[0])*(Y-c[1]))/den,w2=1-w0-w1;
+    if(w0<-.00001||w1<-.00001||w2<-.00001)continue;
+    const z=w0*a[2]+w1*b[2]+w2*c[2],i=y*rw+x;if(z<=depthBuffer[i])continue;
+    depthBuffer[i]=z;pickBuffer[i]=m.id;frame.data.set([...rgb,255],i*4);
+   }
+  }
+ }
+ // 实际可见表面的交界线，不绘制被遮挡的边。
+ for(let y=1;y<rh-1;y++)for(let x=1;x<rw-1;x++){const i=y*rw+x;if(pickBuffer[i]<0)continue;if(pickBuffer[i+1]!==pickBuffer[i]||pickBuffer[i+rw]!==pickBuffer[i]){for(let k=0;k<3;k++)frame.data[i*4+k]*=.74;}}
+ ctx.putImageData(frame,0,0);
+ if(!exam && selected>=0){
+  // 在实际可见像素中寻找靠近构件中心的锚点，避免指向被遮挡的几何中心。
+  const center=project(centers[selected],selected);let best=-1,bestDistance=Infinity;
+  for(let y=0;y<rh;y++)for(let x=0;x<rw;x++){
+   const i=y*rw+x;if(pickBuffer[i]!==selected)continue;
+   const d=(x-center[0])**2+(y-center[1])**2;if(d<bestDistance){bestDistance=d;best=i;}
+  }
+  if(best>=0){
+   const ax=best%rw,ay=Math.floor(best/rw),q=pixelRatio;
+   const labelWidth=98*q,labelHeight=30*q,margin=12*q;
+   const right=ax<W*.58;
+   const x=right?Math.min(W-margin-labelWidth,ax+50*q):Math.max(margin,ax-50*q-labelWidth);
+   const y=Math.max(margin,Math.min(H-margin-labelHeight,ay-48*q));
+   const edgeX=right?x:x+labelWidth,edgeY=y+labelHeight/2;
+   ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(edgeX,edgeY);ctx.strokeStyle='#8ccbd2';ctx.lineWidth=1.2*q;ctx.stroke();
+   ctx.beginPath();ctx.arc(ax,ay,3*q,0,Math.PI*2);ctx.fillStyle='#b5f1ef';ctx.fill();
+   ctx.fillStyle='#0a2634';ctx.fillRect(x,y,labelWidth,labelHeight);ctx.strokeStyle='#4a8997';ctx.lineWidth=q;ctx.strokeRect(x,y,labelWidth,labelHeight);
+   ctx.font=(14*q)+'px Microsoft YaHei';ctx.fillStyle='#dbf8f8';ctx.textBaseline='middle';ctx.fillText(info[selected][0],x+10*q,y+labelHeight/2);
+  }
+ }
+}
+function hitAt(clientX,clientY){const r=canvas.getBoundingClientRect(),x=Math.floor((clientX-r.left)*rasterWidth/r.width),y=Math.floor((clientY-r.top)*rasterHeight/r.height);return x>=0&&y>=0&&x<rasterWidth&&y<rasterHeight?pickBuffer?.[y*rasterWidth+x]??-1:-1;}
+function resize(){let r=canvas.getBoundingClientRect();pixelRatio=Math.min(2,Math.max(2,globalThis.devicePixelRatio||1));W=Math.round(r.width*pixelRatio);H=Math.round(r.height*pixelRatio);canvas.width=W;canvas.height=H;render();}
+function select(id){selected=id;$('name').textContent=id<0?'整体构造':info[id][0];$('description').textContent=id<0?'前墙与后墙组成T形台身。旋转模型观察整体，再点击构件查看名称与作用。':info[id][1];document.querySelectorAll('[data-part]').forEach(b=>b.setAttribute('aria-pressed',Number(b.dataset.part)===id));render();}
+info.forEach((p,i)=>{const b=document.createElement('button');b.textContent=p[0];b.dataset.part=i;b.style.cssText='--part-color:'+p[2];b.setAttribute('aria-pressed','false');b.onclick=()=>select(i);$('parts').append(b);});
+function contains(p,poly){let inside=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){let a=poly[i],b=poly[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])inside=!inside;}return inside;}
+canvas.onpointerdown=e=>{canvas.setPointerCapture(e.pointerId);pointers.set(e.pointerId,[e.clientX,e.clientY]);last=[e.clientX,e.clientY];moved=0;pinch=0;};
+canvas.onpointermove=e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pointers.size===2){let v=[...pointers.values()],d=Math.hypot(v[0][0]-v[1][0],v[0][1]-v[1][1]);if(pinch)zoom=Math.max(.6,Math.min(1.6,zoom*d/pinch));pinch=d;moved=20;$('zoom').value=zoom*100;}else if(last){let dx=e.clientX-last[0],dy=e.clientY-last[1];yaw-=dx*.009;pitch=Math.max(-.3,Math.min(1.5,pitch+dy*.007));moved+=Math.abs(dx)+Math.abs(dy);}last=[e.clientX,e.clientY];render();};
+canvas.onpointerup=e=>{pointers.delete(e.pointerId);last=null;if(moved<5){if(!exam)select(hitAt(e.clientX,e.clientY));}};
+canvas.onpointercancel=e=>{pointers.delete(e.pointerId);last=null;};
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.6,Math.min(1.6,zoom*Math.exp(-e.deltaY*.001)));$('zoom').value=zoom*100;render();},{passive:false});
+$('explode').oninput=e=>{explode=e.target.value/100;$('amount').textContent=e.target.value+'%';render();};
+$('zoom').oninput=e=>{zoom=e.target.value/100;render();};
+$('zoom').value=90;
+$('reset').onclick=()=>{yaw=2.42;pitch=.48;zoom=.9;explode=0;$('zoom').value=90;$('explode').value=0;$('amount').textContent='0%';select(-1);};
+$('clear').onclick=()=>select(-1);$('front').onclick=()=>{yaw=Math.PI;pitch=.12;render();};$('top').onclick=()=>{yaw=0;pitch=1.5;render();};
+$('fullscreen').onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen().catch(()=>{});};
+$('export').onclick=()=>{let out=['# T abutment teaching model. Arbitrary units, schematic only.'],offset=1;for(const m of meshes){out.push('o part_'+m.id);for(const p of m.v)out.push('v '+p.join(' '));for(const f of m.f)out.push('f '+f.map(i=>i+offset).join(' '));offset+=m.v.length;}let url=URL.createObjectURL(new Blob([out.join('\n')],{type:'text/plain'})),a=document.createElement('a');a.href=url;a.download='T-abutment.obj';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+
+const bank=$('bank');
+function refreshBank(){
+ bank.replaceChildren();
+ info.forEach((part,id)=>{
+ const b=document.createElement('button');b.textContent=part[0]+(answers[id]!==undefined?' · 已放置':'');b.dataset.answer=id;b.style.touchAction='none';
+ if(submitted)b.style.borderColor=answers[id]===id?'#279163':'#cf594b';
+ b.onpointerdown=e=>{
+ if(submitted)return;e.preventDefault();b.setPointerCapture(e.pointerId);
+ const ghost=document.createElement('div');ghost.textContent=part[0];Object.assign(ghost.style,{position:'fixed',pointerEvents:'none',padding:'10px 16px',background:'#216c9e',color:'white',borderRadius:'7px',zIndex:1000});document.body.append(ghost);
+ const move=ev=>{ghost.style.left=(ev.clientX+12)+'px';ghost.style.top=(ev.clientY+12)+'px';};move(e);
+ b.onpointermove=move;b.onpointerup=ev=>{const hit=hitAt(ev.clientX,ev.clientY);ghost.remove();b.onpointermove=null;b.onpointerup=null;b.onpointercancel=null;if(hit>=0){answers[id]=hit;selected=hit;render();}refreshBank();};
+ b.onpointercancel=()=>{ghost.remove();b.onpointermove=null;b.onpointerup=null;};
+ };bank.append(b);
+ });
+ $('progress').textContent='已放置 '+Object.keys(answers).length+' / '+info.length;
+}
+function mode(value){exam=value;$('learnMode').setAttribute('aria-pressed',String(!value));$('examMode').setAttribute('aria-pressed',String(value));selected=-1;$('examPanel').hidden=!value;$('learnPanel').hidden=value;$('explode').disabled=value;$('export').disabled=value;if(value){explode=0;$('explode').value=0;$('amount').textContent='0%';refreshBank();}render();}
+$('examMode').onclick=()=>mode(true);$('learnMode').onclick=()=>mode(false);
+$('submit').onclick=()=>{
+ const remaining=info.length-Object.keys(answers).length;
+ if(remaining>0){$('scoreCard').hidden=true;$('result').textContent='还有 '+remaining+' 项未放置，请完成后再提交。';return;}
+ submitted=true;
+ const correct=info.filter((_,i)=>answers[i]===i).length;
+ $('result').textContent='';
+ $('scoreValue').textContent=Math.round(correct/info.length*100);
+ $('scoreSummary').textContent='答对 '+correct+' / '+info.length+' 项，待纠正 '+(info.length-correct)+' 项';
+ $('scoreErrors').replaceChildren();
+ const errors=info.map((p,i)=>({name:p[0],target:info[answers[i]][0],correct:answers[i]===i})).filter(x=>!x.correct);
+ if(errors.length){
+  const title=document.createElement('strong');title.textContent='待纠正构件';$('scoreErrors').append(title);
+  const list=document.createElement('ul');
+  errors.forEach(x=>{const li=document.createElement('li');li.textContent=x.name+'：放在了'+x.target+'上';list.append(li);});
+  $('scoreErrors').append(list);
+ }else $('scoreErrors').textContent='全部正确！';
+ $('scoreCard').hidden=false;refreshBank();
+ $('scoreCard').scrollIntoView({behavior:'instant',block:'start'});
+};
+$('retry').onclick=()=>{answers={};submitted=false;selected=-1;$('result').textContent='';$('scoreCard').hidden=true;$('scoreValue').textContent='';$('scoreSummary').textContent='';$('scoreErrors').replaceChildren();refreshBank();render();};
+new ResizeObserver(resize).observe(canvas);
+</script></body></html>
