@@ -12,6 +12,8 @@
 - [正反循环流向判断](./drilling-circulation/)：观察泥浆流向动画并完成判断
 - [钻孔桩常见缺陷及防治](./drilled-pile-defects/)：结合现场情境进行质量判断并查阅缺陷图文资料
 
+- [桥梁上部结构能力图谱（任务1.1）](./bridge-competency-map/)：五级能力图谱，支持自动轮播、节点联动和动态流光连线
+
 ## 在线访问
 
 启用 GitHub Pages 后，可通过仓库 Pages 地址访问各子项目：
@@ -19,6 +21,8 @@
 - `https://swallow002.github.io/digital-interaction/GTC-8C-probe/`
 - `https://swallow002.github.io/digital-interaction/rail-geometry-courseware/`
 - `https://swallow002.github.io/digital-interaction/railway-guardian-pioneer-app/`
+
+- `https://swallow002.github.io/digital-interaction/bridge-competency-map/`
 
 ## 钻孔桩施工教学交互
 
