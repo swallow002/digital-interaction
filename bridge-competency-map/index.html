@@ -44,7 +44,30 @@
 @media(min-width:1700px){.scene{padding:26px 45px 30px}.heads,.map{column-gap:52px}.label{font-size:15px}.knowledge .label{font-size:14px}.face{padding:17px}.map{row-gap:18px}}
 @media(max-width:760px){.scene{padding:16px 15px 20px}.topline{margin-bottom:20px}.now{font-size:11px;letter-spacing:0}.pace{display:none}.ctrl{padding:0 9px}.map{height:calc(100svh - 134px)}.scene:after{inset:7px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.stream,.spark{display:none}}
-</style></head><body><main class="scene" id="scene"><div class="topline"><div class="now" aria-live="polite"><i aria-hidden="true"></i><span id="now">自动演示 · S1</span></div><div class="controls"><div class="pace" aria-hidden="true"><span id="pace-fill"></span></div><button class="ctrl primary" id="play" type="button" aria-pressed="true">暂停轮播</button><button class="ctrl" id="all" type="button">全部关联</button></div></div><div class="viewport"><div class="heads" aria-hidden="true"><div class="heading" data-level="project" style="--head-delay:-0.0s"><em>01</em><span class="heading-text">项目</span><i class="heading-beam"></i></div><div class="heading" data-level="task" style="--head-delay:-0.55s"><em>02</em><span class="heading-text">任务</span><i class="heading-beam"></i></div><div class="heading" data-level="flow" style="--head-delay:-1.1s"><em>03</em><span class="heading-text">工作流程</span><i class="heading-beam"></i></div><div class="heading" data-level="skill" style="--head-delay:-1.6500000000000001s"><em>04</em><span class="heading-text">技能点</span><i class="heading-beam"></i></div><div class="heading" data-level="knowledge" style="--head-delay:-2.2s"><em>05</em><span class="heading-text">知识点</span><i class="heading-beam"></i></div></div><div class="map" id="map" aria-label="任务1.1五级能力图谱，点击节点可手动查看"><svg class="links" id="links" role="img" aria-label="动态流动连线展示技能与知识的多对多关系"><g id="edges"></g></svg></div></div></main><script>(()=>{
+
+/* Fit the full graph to the actual embedded viewport, rather than forcing a desktop minimum width. */
+html,body{width:100%;height:100%;overflow:hidden;}
+#fit-frame{position:fixed;inset:0;overflow:hidden;background:#050c17;}
+.scene{position:absolute;left:0;top:0;width:1360px;height:600px;min-height:0;padding:14px 20px 12px;transform-origin:0 0;visibility:hidden;}
+.scene:after{inset:7px;}
+.topline{height:28px;margin-bottom:10px;}
+.now{font-size:12px;letter-spacing:1px;}
+.controls{gap:8px;}.ctrl{height:27px;padding:0 10px;font-size:12px;}
+.pace{display:block;width:55px;}
+.viewport{overflow:visible;padding:0;}
+.heads,.map{min-width:0;column-gap:26px;grid-template-columns:minmax(0,.85fr) minmax(0,1.05fr) minmax(0,1fr) minmax(0,1.6fr) minmax(0,1.4fr);}
+.heads{margin-bottom:12px;}
+.heading{min-height:44px;font-size:17px;gap:10px;padding-bottom:7px;}
+.heading em{width:27px;height:24px;}
+.map{height:480px;min-height:0;grid-template-rows:repeat(8,minmax(0,1fr));row-gap:8px;}
+.node{min-height:50px;}.face{min-height:48px;padding:12px;}
+.label{font-size:14px;line-height:1.65;}.knowledge .label{font-size:13.5px;line-height:1.45;}
+.knowledge .face{min-height:46px;padding:8px 10px;}.knowledge{min-height:48px;}
+.flow .label{font-size:14px;}.inner{gap:9px;}.code{font-size:11px;}
+.project .face,.task .face{padding:19px 13px 18px;}
+.project .label,.task .label{font-size:16px;line-height:1.8;}.over{margin-bottom:12px;}
+
+</style></head><body><div id="fit-frame"><main class="scene" id="scene"><div class="topline"><div class="now" aria-live="polite"><i aria-hidden="true"></i><span id="now">自动演示 · S1</span></div><div class="controls"><div class="pace" aria-hidden="true"><span id="pace-fill"></span></div><button class="ctrl primary" id="play" type="button" aria-pressed="true">暂停轮播</button><button class="ctrl" id="all" type="button">全部关联</button></div></div><div class="viewport"><div class="heads" aria-hidden="true"><div class="heading" data-level="project" style="--head-delay:-0.0s"><em>01</em><span class="heading-text">项目</span><i class="heading-beam"></i></div><div class="heading" data-level="task" style="--head-delay:-0.55s"><em>02</em><span class="heading-text">任务</span><i class="heading-beam"></i></div><div class="heading" data-level="flow" style="--head-delay:-1.1s"><em>03</em><span class="heading-text">工作流程</span><i class="heading-beam"></i></div><div class="heading" data-level="skill" style="--head-delay:-1.6500000000000001s"><em>04</em><span class="heading-text">技能点</span><i class="heading-beam"></i></div><div class="heading" data-level="knowledge" style="--head-delay:-2.2s"><em>05</em><span class="heading-text">知识点</span><i class="heading-beam"></i></div></div><div class="map" id="map" aria-label="任务1.1五级能力图谱，点击节点可手动查看"><svg class="links" id="links" role="img" aria-label="动态流动连线展示技能与知识的多对多关系"><g id="edges"></g></svg></div></div></main></div><script>(()=>{
   const flows=[{id:'F1',type:'flow',name:'核读图纸信息',detail:'形成图纸信息与主要几何参数记录。'},{id:'F2',type:'flow',name:'辨识上部结构',detail:'形成结构类型、主要构件和连接关系标注。'},{id:'F3',type:'flow',name:'分析施工条件',detail:'形成影响施工方法选用的现场条件清单。'},{id:'F4',type:'flow',name:'比选施工方法',detail:'形成施工方法初选结果及选用依据。'}];
   const skills=[{id:'S1',type:'skill',name:'能识读桥梁上部结构图纸，提取主要几何参数',flow:'F1',ks:['K1','K2','K5']},{id:'S2',type:'skill',name:'能辨识上部结构类型、主要构件及其连接关系',flow:'F2',ks:['K2','K3','K4']},{id:'S3',type:'skill',name:'能从案例资料中提取影响施工方法选用的现场条件',flow:'F3',ks:['K5','K7']},{id:'S4',type:'skill',name:'能结合结构特点和现场条件初选施工方法，并说明依据',flow:'F4',ks:['K3','K6','K7','K8']}];
   const knowledge=[{id:'K1',type:'knowledge',name:'桥梁施工图组成与识读顺序'},{id:'K2',type:'knowledge',name:'桥梁图样符号与尺寸标注规则'},{id:'K3',type:'knowledge',name:'桥梁上部结构类型及基本构造'},{id:'K4',type:'knowledge',name:'上部结构主要构件的功能与连接关系'},{id:'K5',type:'knowledge',name:'桥梁主要几何参数及其含义'},{id:'K6',type:'knowledge',name:'常用上部结构施工方法的基本原理'},{id:'K7',type:'knowledge',name:'施工方法的适用条件与主要限制'},{id:'K8',type:'knowledge',name:'施工方法比较与选用的基本原则'}];
@@ -79,8 +102,8 @@ edges.forEach((e,i)=>{
  const spark=svgEl('circle',{class:'spark',r:'2.3'}),motion=svgEl('animateMotion',{dur:(2.5+(i%4)*.22)+'s',begin:(-i*.19)+'s',repeatCount:'indefinite',rotate:'auto'});spark.append(motion);group.append(base,stream,spark);layer.append(group);Object.assign(e,{group,base,stream,motion});
 });
 function redraw(){
- const box=map.getBoundingClientRect();for(const e of edges){
- const a=els[e.from].button.getBoundingClientRect(),b=els[e.to].button.getBoundingClientRect(),x1=a.right-box.left,y1=(a.top+a.bottom)/2-box.top,x2=b.left-box.left,y2=(b.top+b.bottom)/2-box.top,dx=(x2-x1)*.5;
+ const box=map.getBoundingClientRect(),scale=box.width/parseFloat(getComputedStyle(map).width)||1;for(const e of edges){
+ const a=els[e.from].button.getBoundingClientRect(),b=els[e.to].button.getBoundingClientRect(),x1=(a.right-box.left)/scale,y1=((a.top+a.bottom)/2-box.top)/scale,x2=(b.left-box.left)/scale,y2=((b.top+b.bottom)/2-box.top)/scale,dx=(x2-x1)*.5;
  const d='M '+x1+' '+y1+' C '+(x1+dx)+' '+y1+' '+(x2-dx)+' '+y2+' '+x2+' '+y2;e.base.setAttribute('d',d);e.stream.setAttribute('d',d);e.motion.setAttribute('path',d);
  }
 }
@@ -129,5 +152,23 @@ document.addEventListener('visibilitychange',()=>{
 });
 new ResizeObserver(schedule).observe(map);window.addEventListener('resize',schedule);if(document.fonts)document.fonts.ready.then(schedule);
 function honorMotion(){if(reduced.matches){svg.pauseAnimations();setAuto(false);}else svg.unpauseAnimations();}reduced.addEventListener('change',honorMotion);
+
+function fitViewport(){
+ const frame=document.getElementById('fit-frame');
+ const w=frame.clientWidth,h=frame.clientHeight;
+ if(!w||!h)return;
+ const scale=Math.min(w/1360,h/600);
+ scene.style.transform='scale('+scale+')';
+ scene.style.left=((w-1360*scale)/2)+'px';
+ scene.style.top=((h-600*scale)/2)+'px';
+ scene.style.visibility='visible';
+ document.body.dataset.fitWidth=String(w);document.body.dataset.fitHeight=String(h);document.body.dataset.fitScale=scale.toFixed(4);
+ schedule();
+}
+new ResizeObserver(fitViewport).observe(document.getElementById('fit-frame'));
+window.addEventListener('resize',fitViewport);
+if(window.visualViewport)window.visualViewport.addEventListener('resize',fitViewport);
+fitViewport();
+
 choose('S1');setAuto(auto);honorMotion();
 })();</script></body></html>
