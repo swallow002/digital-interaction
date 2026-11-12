@@ -31,3 +31,14 @@
 - [常见缺陷及防治](./drilled-pile-defects/)
 
 以上三个互动可分别访问；也可以将对应文件夹完整下载后离线打开其中的 `index.html`。
+
+## 项目一：桥梁上部结构能力图谱
+
+各任务均可独立访问，支持自动演示、节点联动、流动连线及学习通内嵌缩放。
+
+- [任务1.2 简支梁预制架设施工与组织](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-1-2/)
+- [任务1.3 简支梁现浇施工与质量控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-1-3/)
+- [任务1.4 拱桥施工方法与工序组织](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-1-4/)
+- [任务1.5 斜拉桥施工工艺与施工控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-1-5/)
+- [任务1.6 悬索桥施工工艺与质量控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-1-6/)
+- [任务1.7 涵洞施工工艺与质量检查](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-1-7/)
