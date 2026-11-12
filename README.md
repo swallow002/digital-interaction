@@ -42,3 +42,39 @@
 - [任务1.5 斜拉桥施工工艺与施工控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-1-5/)
 - [任务1.6 悬索桥施工工艺与质量控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-1-6/)
 - [任务1.7 涵洞施工工艺与质量检查](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-1-7/)
+
+## 项目二至五能力图谱
+
+### 项目二 高速铁路桥梁下部结构施工
+
+- [任务2.1 桥梁墩台施工工艺与质量控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-2-1/)
+- [任务2.2 高桥墩施工工艺与安全控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-2-2/)
+- [任务2.3 明挖基础施工与质量检查](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-2-3/)
+- [任务2.4 钻孔桩施工工艺与质量控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-2-4/)
+- [任务2.5 沉井基础施工与下沉控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-2-5/)
+
+### 项目三 高速铁路桥梁养护及维修
+
+- [任务3.1 桥梁养护要求与作业准备](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-3-1/)
+- [任务3.2 桥上线路检查与维护作业](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-3-2/)
+- [任务3.3 桥面设备检查与养护作业](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-3-3/)
+- [任务3.4 钢桥病害识别与养护维修](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-3-4/)
+- [任务3.5 梁拱墩台病害识别与养护](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-3-5/)
+- [任务3.6 涵洞检查与养护维修](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-3-6/)
+
+### 项目四 高速铁路隧道施工
+
+- [任务4.1 铁路隧道构造识图与施工认知](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-4-1/)
+- [任务4.2 山岭隧道开挖方法与工序组织](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-4-2/)
+- [任务4.3 隧道支护施工与质量检查](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-4-3/)
+- [任务4.4 隧道施工作业组织与安全控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-4-4/)
+- [任务4.5 新奥法施工组织与监控量测](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-4-5/)
+- [任务4.6 盾构施工工艺与质量控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-4-6/)
+- [任务4.7 掘进机施工工艺与作业组织](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-4-7/)
+- [任务4.8 沉管隧道施工工艺与质量控制](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-4-8/)
+
+### 项目五 高速铁路隧道病害及防治
+
+- [任务5.1 隧道检查与病害判识](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-5-1/)
+- [任务5.2 衬砌裂损识别与整治](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-5-2/)
+- [任务5.3 隧道水害识别与防治](https://swallow002.github.io/digital-interaction/bridge-competency-map/task-5-3/)
